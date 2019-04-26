@@ -1,5 +1,6 @@
 let s:git_executable = "git"
-let s:tmp_dir = expand("~/.config/nvim/tmp")
+let s:tmp_dir = expand("~/.config/nvim/tmp/gitsession")
+let s:current_window = 1
 
 function! GetBranch() abort
     let s:branch_name = system(s:git_executable . " branch 2>/dev/null| grep '*' | sed 's/* //'")
@@ -11,12 +12,12 @@ function! GetBranch() abort
 endfunction
 
 function! GetOrigin() abort
-    let s:orig_name = system(s:git_executable . " remote -v | grep 'push' | grep 'origin'")
+    let s:orig_name = system(s:git_executable . " remote -v 2>/dev/null | grep 'push' | grep 'origin'")
     " remove remote branch name
     let s:orig_name = substitute(s:orig_name, '.*\t', '', '')
     " remove https/git headers
     let s:orig_name = substitute(s:orig_name, 'https://[^/]*/', '', '')
-    let s:orig_name = substitute(s:orig_name, 'git@\.*:', '', '')
+    let s:orig_name = substitute(s:orig_name, 'git@.*:', '', '')
     let s:orig_name = substitute(s:orig_name, '\.git', '', '')
     " remove trailing "(push)"
     let s:orig_name = substitute(s:orig_name, ' (.*)', '', '')
@@ -38,23 +39,44 @@ function! GetRepoDir()
     while !isdirectory(s:repodir_name . '/.git/')
         let s:repodir_name = GetParentDir(s:repodir_name)
         if s:repodir_name == '/'
-            return ''
+            " TODO: change this by options
+            " return ''
+            return split(getcwd(),'/')[0]
         endif
-        " TODO: if cwd isn't in any repositories...?
     endwhile
     return split(s:repodir_name,'/')[-1]
 endfunction
 
+function! Session_filename() abort
+    return s:tmp_dir . "/" . GetRepoDir() . "--" . GetOrigin() . "--" . GetBranch() . "--sess.vim"
+endfunction
+
 function! gitsession#savesession() abort
-    let s:session_filename = s:tmp_dir . "/" . "--" . GetRepoDir() . GetOrigin() . "--" . GetBranch() . "--sessionfile.vim"
+    if s:current_window
+        cd %:p:h
+    endif
     if isdirectory(s:tmp_dir) == 0
-        system("!mkdir -p " . s:tmp_dir . " >/dev/null 2>&1")
+        call system("mkdir -p " . s:tmp_dir . " >/dev/null 2>&1")
+    endif
+    let s:session_filename = Session_filename()
+    if s:current_window
+        cd -
     endif
     execute "mksession! " . s:session_filename
 endfunction
 
 function! gitsession#loadsession() abort
-    let s:session_filename = s:tmp_dir . "/" . "--" . GetRepoDir() . GetOrigin() . "--" . GetBranch() . "--sessionfile.vim"
+    if s:current_window
+        cd %:p:h
+    endif
+    let s:session_filename = Session_filename()
+    if !filereadable(s:session_filename)
+        echo "Session file (" . s:session_filename . ") not found"
+        return
+    endif
     execute "silent source " . s:session_filename
+    if s:current_window
+        cd -
+    endif
 endfunction
 
