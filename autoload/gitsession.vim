@@ -1,19 +1,19 @@
-" option
-let g:git_executable = get(g:, 'git_executable', "git")
-let g:tmp_dir = get(g:, 'tmp_dir', expand("~/.config/nvim/tmp/gitsession"))
-let g:current_window = get(g:, 'current_window', 1)
+" variables
+let g:gitsession_git_executable = get(g:, 'gitsession_git_executable', "git")
+let g:gitsession_tmp_dir        = get(g:, 'gitsession_tmp_dir', expand("~/.config/nvim/tmp/gitsession"))
+let g:gitsession_current_window = get(g:, 'gitsession_current_window', 1)
 
 function! GetBranch() abort
-    let s:branch_name = system(g:git_executable . " branch 2>/dev/null| grep '*' | sed 's/* //'")
+    let s:branch_name = system(g:gitsession_git_executable . " branch 2>/dev/null| grep '*' | sed 's/* //'")
     let s:branch_name = substitute(s:branch_name,' ','_','g')
-    let s:branch_name= substitute(s:branch_name, '\n', '', 'g')
+    let s:branch_name = substitute(s:branch_name, '\n', '', 'g')
     " convert '/' to '_' to avoid problems with path
     let s:branch_name = substitute(s:branch_name, '/', '_', 'g')
     return s:branch_name
 endfunction
 
 function! GetOrigin() abort
-    let s:orig_name = system(g:git_executable . " remote -v 2>/dev/null | grep 'push' | grep 'origin'")
+    let s:orig_name = system(g:gitsession_git_executable . " remote -v 2>/dev/null | grep 'push' | grep 'origin'")
     " remove remote branch name
     let s:orig_name = substitute(s:orig_name, '.*\t', '', '')
     " remove https/git headers
@@ -49,25 +49,25 @@ function! GetRepoDir()
 endfunction
 
 function! Session_filename() abort
-    return g:tmp_dir . "/" . GetRepoDir() . "--" . GetOrigin() . "--" . GetBranch() . "--sess.vim"
+    return g:gitsession_tmp_dir . "/" . GetRepoDir() . "--" . GetOrigin() . "--" . GetBranch() . "--sess.vim"
 endfunction
 
 function! gitsession#savesession() abort
-    if g:current_window
+    if g:gitsession_current_window
         cd %:p:h
     endif
-    if isdirectory(g:tmp_dir) == 0
-        call system("mkdir -p " . g:tmp_dir . " >/dev/null 2>&1")
+    if isdirectory(g:gitsession_tmp_dir) == 0
+        call system("mkdir -p " . g:gitsession_tmp_dir . " >/dev/null 2>&1")
     endif
     let s:session_filename = Session_filename()
-    if g:current_window
+    if g:gitsession_current_window
         cd -
     endif
     execute "mksession! " . s:session_filename
 endfunction
 
 function! gitsession#loadsession() abort
-    if g:current_window
+    if g:gitsession_current_window
         cd %:p:h
     endif
     let s:session_filename = Session_filename()
@@ -76,7 +76,7 @@ function! gitsession#loadsession() abort
         return
     endif
     execute "silent source " . s:session_filename
-    if g:current_window
+    if g:gitsession_current_window
         cd -
     endif
 endfunction

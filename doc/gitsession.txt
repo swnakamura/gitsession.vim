@@ -1,0 +1,64 @@
+gitsession.txt		Git friendly session manager
+
+Author: Shu W. Nakamura
+License: MIT license
+
+CONTENTS									*gitsession-contents*
+Usage										|gitsession-usage|
+Install										|gitsession-install|
+Variables									|gitsession-variables|
+Configuration Examples						|gitsession-examples|
+
+==============================================================================
+USAGE										*gitsession-usage*
+
+Go into your project, open NeoVim, edit as you like.
+When you are done but want to continue tomorrow, run
+
+			`:SaveSession`
+
+before you leave. This will save your current session.
+		
+When you are back, run
+
+			`:LoadSession`
+
+in the same project repository. Your window setting will be reloaded.
+
+==============================================================================
+INSTALL										*gitsession-install*
+
+Can be easily installed with your package manager.
+
+For example, with vim-plug,
+
+			`Plug 'woodyZootopia/gitsession.nvim'`
+
+==============================================================================
+VARIABLES									*gitsession-variables*
+
+g:gitsession_git_executable					*g:gitsession_git_executable*
+			Specify your command to run git if you aliased
+			`git` to another command.
+
+			Default value: "git"
+
+g:gitsession_tmp_dir						*g:gitsession_tmp_dir*
+			Specify temporary directory to save session files.
+
+			Default value: "expand("~/.config/nvim/tmp/gitsession")"
+
+g:gitsession_current_window					*g:gitsession_current_window*
+			By default, gitsession associates your session file with
+			the directory of your current window.
+			Set this value to 0 if you want to associate your session file
+			with your working directory.
+
+			Default value: 1
+
+==============================================================================
+CONFIGURATION EXAMPLES						*gitsession-examples*
+
+			" I don't like buffer to be cached.
+			" It piles up and degrades performance.
+			set sessionoptions-=buffers
