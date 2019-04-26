@@ -6,3 +6,4 @@ let g:loaded_gitsession = 1
 " load function
 command! SaveSession call gitsession#savesession()
 command! LoadSession call gitsession#loadsession()
+command! CleanUpSession call gitsession#cleanupsession()

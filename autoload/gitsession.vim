@@ -81,3 +81,7 @@ function! gitsession#loadsession() abort
     endif
 endfunction
 
+function! gitsession#cleanupsession() abort
+    call system("rm " . g:gitsession_tmp_dir . "/*--*--*--sess.vim")
+endfunction
+
