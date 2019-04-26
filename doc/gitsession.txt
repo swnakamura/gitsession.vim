@@ -47,7 +47,7 @@ g:gitsession_git_executable					*g:gitsession_git_executable*
 g:gitsession_tmp_dir						*g:gitsession_tmp_dir*
 			Specify temporary directory to save session files.
 
-			Default value: "expand("~/.config/nvim/tmp/gitsession")"
+			Default value: "expand("~/.tmp/gitsession")"
 
 g:gitsession_current_window					*g:gitsession_current_window*
 			By default, gitsession associates your session file with
