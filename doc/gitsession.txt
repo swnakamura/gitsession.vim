@@ -13,8 +13,8 @@ Configuration Examples						|gitsession-examples|
 ==============================================================================
 USAGE										*gitsession-usage*
 
-Go into your project, open NeoVim, edit as you like.
-When you are done but want to continue tomorrow, run
+Go into your project, open NeoVim, edit as you like.  When you are done but
+want to continue tomorrow, run
 
 			`:SaveSession`
 
@@ -39,8 +39,8 @@ For example, with vim-plug,
 VARIABLES									*gitsession-variables*
 
 g:gitsession_git_executable					*g:gitsession_git_executable*
-			Specify your command to run git if you aliased
-			`git` to another command.
+			Specify your command to run git if you aliased `git` to another
+			command.
 
 			Default value: "git"
 
@@ -50,10 +50,9 @@ g:gitsession_tmp_dir						*g:gitsession_tmp_dir*
 			Default value: "expand("~/.tmp/gitsession")"
 
 g:gitsession_current_window					*g:gitsession_current_window*
-			By default, gitsession associates your session file with
-			the directory of your current window.
-			Set this value to 0 if you want to associate your session file
-			with your working directory.
+			By default, gitsession associates your session file with the
+			directory of your current window.  Set this value to 0 if you want
+			to associate your session file with your working directory.
 
 			Default value: 1
 
@@ -70,12 +69,11 @@ Commands									*gitsession-commands*
 ==============================================================================
 CONFIGURATION EXAMPLES						*gitsession-examples*
 
-			" I don't like buffer to be cached.
-			" It piles up and degrades performance.
+			" I don't like buffer to be cached. It piles up and degrades
+			" performance.
 			set sessionoptions-=buffers
 
-			" I don't like my temporary file
-			" to be scattered.
+			" I don't like my temporary file to be scattered.
 			let g:gitsession_tmp_dir = expand("~/.config/nvim/tmp/gitsession")
 
 			" mapping
