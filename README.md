@@ -1,4 +1,4 @@
-gitsession.vim
+gitsession.nvim
 ==============
 
 Say goodbye to troublesome session file management.
@@ -12,6 +12,13 @@ Install it with a plugin manager.
 Go into your project, open NeoVim, edit as you like, and run `:SaveSession` before you leave. This will save your current session.
 
 When you are back, run `:LoadSession` in the same project repository. Your window setting will reappear.
+
+## Example Comfiguration
+
+```init.vim
+nmap gss :SaveSession<CR>
+nmap gsl :LoadSession<CR>
+```
 
 ## Compatibility
 This plugin works with Vim as well, but as I only tested it with NeoVim, compatibility is not guaranteed. If you find any problem, please send Issue/PR.
