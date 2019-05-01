@@ -1,4 +1,4 @@
-gitsession.txt		Git friendly session manager
+gitsession.txt								Last Change: Wed May  1 22:30:37 JST 2019
 
 Author: Shu W. Nakamura
 License: MIT license
@@ -8,7 +8,7 @@ Usage										|gitsession-usage|
 Install										|gitsession-install|
 Variables									|gitsession-variables|
 Commands									|gitsession-commands|
-Configuration Examples						|gitsession-examples|
+Configuration Examples								|gitsession-examples|
 
 ==============================================================================
 USAGE										*gitsession-usage*
@@ -38,18 +38,21 @@ For example, with vim-plug,
 ==============================================================================
 VARIABLES									*gitsession-variables*
 
-g:gitsession_git_executable					*g:gitsession_git_executable*
+										*g:gitsession_git_executable*
+g:gitsession_git_executable							
 			Specify your command to run git if you aliased `git` to another
 			command.
 
 			Default value: "git"
 
-g:gitsession_tmp_dir						*g:gitsession_tmp_dir*
+										*g:gitsession_tmp_dir*
+g:gitsession_tmp_dir								
 			Specify temporary directory to save session files.
 
 			Default value: "expand("~/.tmp/gitsession")"
 
-g:gitsession_current_window					*g:gitsession_current_window*
+										*g:gitsession_current_window*
+g:gitsession_current_window
 			By default, gitsession associates your session file with the
 			directory of your current window.  Set this value to 0 if you want
 			to associate your session file with your working directory.
@@ -80,3 +83,5 @@ CONFIGURATION EXAMPLES						*gitsession-examples*
 			nmap gss :SaveSession<CR>
 			nmap gsl :LoadSession<CR>
 			nmap gsc :CleanUpSession<CR>
+
+ vim:tw=78:ts=8:noet:ft=help:norl:

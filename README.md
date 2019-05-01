@@ -9,7 +9,7 @@ With this plugin you can save&load session file (the arrangement of tabs&windows
 ## Quick Start
 Install it with a plugin manager.
 
-Go into your project, open NeoVim, edit as you like, and run `:SaveSession` before you leave. This will save your current session.
+Go into your (git) project, open NeoVim, edit as you like, and run `:SaveSession` before you leave. This will save your current session.
 
 When you are back, run `:LoadSession` in the same project repository. Your window setting will reappear.
 
