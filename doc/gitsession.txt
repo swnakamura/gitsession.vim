@@ -60,6 +60,14 @@ g:gitsession_current_window
 
 			Default value: 1
 
+										*g:gitsession_autoload*
+g:gitsession_autoload
+			By default, gitsession load session only when
+			`SaveSession` command is called. Setting this to 1
+			saves always.
+
+			Default value: 0
+
 ==============================================================================
 Commands									*gitsession-commands*
 
