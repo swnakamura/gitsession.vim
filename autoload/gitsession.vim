@@ -11,7 +11,7 @@ function! GetOrigin() abort
     let s:orig_name = system(g:gitsession_git_executable . " remote -v 2>/dev/null | grep 'push' | grep 'origin'")
     " remove remote branch name
     let s:orig_name = substitute(s:orig_name, '.*\t', '', '')
-    " remove https/git headers
+    " remove https/git header/suffix
     let s:orig_name = substitute(s:orig_name, 'https://[^/]*/', '', '')
     let s:orig_name = substitute(s:orig_name, 'git@.*:', '', '')
     let s:orig_name = substitute(s:orig_name, '\.git', '', '')
