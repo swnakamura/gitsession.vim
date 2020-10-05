@@ -88,7 +88,7 @@ CONFIGURATION EXAMPLES						*gitsession-examples*
 			" I don't like my temporary file to be scattered.
 			let g:gitsession_tmp_dir = expand("~/.config/nvim/tmp/gitsession")
 
-			" mapping
+			" mappings
 			nmap gss :SaveSession<CR>
 			nmap gsl :LoadSession<CR>
 			nmap gsc :CleanUpSession<CR>

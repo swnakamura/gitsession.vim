@@ -18,7 +18,7 @@ function! GetOrigin() abort
     " remove trailing "(push)"
     let s:orig_name = substitute(s:orig_name, ' (.*)', '', '')
     let s:orig_name = substitute(s:orig_name, '\n', '', 'g')
-    " convert to '_' to avoid problems with path separator
+    " convert path separator to '_' in order to avoid problems
     let s:orig_name = substitute(s:orig_name, '/', '_', 'g')
     let s:orig_name = substitute(s:orig_name, '\', '_', 'g')
     return s:orig_name
@@ -80,3 +80,11 @@ function! gitsession#cleanupsession() abort
     call system("rm " . g:gitsession_tmp_dir . "/*--*--*--sess.vim")
 endfunction
 
+function! gitsession#repeatsaving() abort
+    let timer = timer_start(10 * 1000, function("gitsession#savesessionrepeated"), { "repeat" : -1 })
+endfunction
+
+" Just a wrapper to ignore timer_ID
+function! gitsession#savesessionrepeated(timer_ID) abort
+    silent! call gitsession#savesession()
+endfunction

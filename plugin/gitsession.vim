@@ -7,6 +7,7 @@ let g:loaded_gitsession = 1
 command! SaveSession call gitsession#savesession()
 command! LoadSession call gitsession#loadsession()
 command! CleanUpSession call gitsession#cleanupsession()
+command! StartRepeatedSave call gitsession#repeatsaving()
 
 " variables
 let g:gitsession_git_executable = get(g:, 'gitsession_git_executable', "git")
@@ -15,5 +16,13 @@ let g:gitsession_current_window = get(g:, 'gitsession_current_window', 1)
 let g:gitsession_autoload       = get(g:, 'gitsession_autoload', 0)
 
 if g:gitsession_autoload == 1
-    autocmd VimEnter * call gitsession#loadsession()
+    augroup GSAL
+        autocmd VimEnter * call gitsession#loadsession()
+    augroup END
+endif
+
+if g:gitsession_autosave == 1
+    augroup GSAS
+        autocmd VimEnter * call gitsession#repeatsaving()
+    augroup END
 endif
