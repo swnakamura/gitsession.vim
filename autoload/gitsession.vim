@@ -80,8 +80,9 @@ function! gitsession#cleanupsession() abort
     call system("rm " . g:gitsession_tmp_dir . "/*--*--*--sess.vim")
 endfunction
 
-function! gitsession#repeatsaving() abort
+function! gitsession#repeatsaving(waittime) abort
+    sleep a:waittme
     augroup GSSaveEveryChange
-        autocmd CursorHold call gitsessin#savesession()
+        autocmd CursorHold call gitsession#savesession()
     augroup END
 endfunction
