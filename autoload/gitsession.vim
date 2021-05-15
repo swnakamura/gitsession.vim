@@ -81,7 +81,7 @@ function! gitsession#cleanupsession() abort
 endfunction
 
 function! gitsession#repeatsaving(waittime) abort
-    sleep a:waittme
+    exe 'sleep' . a:waittime
     augroup GSSaveEveryChange
         autocmd CursorHold call gitsession#savesession()
     augroup END
