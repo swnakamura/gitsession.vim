@@ -23,6 +23,6 @@ endif
 
 if g:gitsession_autosave == 1
     augroup GSAutoSave
-        autocmd VimEnter * call timer_start(5, gitsession#repeatsaving())
+        autocmd VimEnter * call timer_start(5 * 1000, 'gitsession#repeatsaving')
     augroup END
 endif
