@@ -81,10 +81,7 @@ function! gitsession#cleanupsession() abort
 endfunction
 
 function! gitsession#repeatsaving() abort
-    let timer = timer_start(10 * 1000, function("gitsession#savesessionrepeated"), { "repeat" : -1 })
-endfunction
-
-" Just a wrapper to ignore timer_ID
-function! gitsession#savesessionrepeated(timer_ID) abort
-    silent! call gitsession#savesession()
+    augroup GSSaveEveryChange
+        autocmd CursorHold call gitsessin#savesession()
+    augroup END
 endfunction

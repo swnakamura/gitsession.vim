@@ -16,13 +16,13 @@ let g:gitsession_current_window = get(g:, 'gitsession_current_window', 1)
 let g:gitsession_autoload       = get(g:, 'gitsession_autoload', 0)
 
 if g:gitsession_autoload == 1
-    augroup GSAL
+    augroup GSAutoLoad
         autocmd VimEnter * call gitsession#loadsession()
     augroup END
 endif
 
 if g:gitsession_autosave == 1
-    augroup GSAS
+    augroup GSAutoSave
         autocmd VimEnter * call gitsession#repeatsaving()
     augroup END
 endif
