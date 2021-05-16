@@ -47,6 +47,11 @@ function! Session_filename() abort
     return g:gitsession_tmp_dir . "/" . GetRepoDir() . "--" . GetOrigin() . "--" . GetBranch() . "--sess.vim"
 endfunction
 
+function! gitsession#exists_session() abort
+    let s:session_filename = Session_filename()
+    return filereadable(s:session_filename)
+endfunction
+
 function! gitsession#savesession() abort
     if g:gitsession_current_window
         cd %:p:h
@@ -65,8 +70,7 @@ function! gitsession#loadsession() abort
     if g:gitsession_current_window
         cd %:p:h
     endif
-    let s:session_filename = Session_filename()
-    if !filereadable(s:session_filename)
+    if !gitsession#exists_session()
         echo "Session file (" . s:session_filename . ") not found"
         return
     endif
@@ -80,7 +84,7 @@ function! gitsession#cleanupsession() abort
     call system("rm " . g:gitsession_tmp_dir . "/*--*--*--sess.vim")
 endfunction
 
-function! gitsession#repeatsaving(timer_id) abort
+function! gitsession#repeatsaving() abort
     augroup GSSaveEveryChange
         autocmd CursorHold * SaveSession
     augroup END

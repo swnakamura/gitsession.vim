@@ -24,6 +24,13 @@ endif
 
 if g:gitsession_autosave == 1
     augroup GSAutoSave
-        autocmd VimEnter * call timer_start(5 * 1000, 'gitsession#repeatsaving')
+        autocmd VimEnter * call gitsession#repeatsaving()
     augroup END
+    " If the previous session file is found, load immediately before
+    " overwritten by autosaving
+    if gitsession#exists_session()
+        if input("The previous session file is found. Load this? Y/n: ") != 'n'
+            call gitsession#loadsession()
+        endif
+    endif
 endif

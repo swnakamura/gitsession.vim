@@ -25,8 +25,6 @@ Type `:StartRepeatedSave` to enable autosave. Your session will be saved automat
 (This internally use `CursorHold`, so that it will be saved only when needed.)
 
 You can also set `let g:gitsession_autosave = 1` (before this plugin is loaded) to enable this feature at the moment Vim starts.
-In this case, you will have 5 seconds before the first save starts, for the case you want to restore the last saved session.
-If you want to restore the last session, start typing `:LoadSession` before 5 seconds pass, or it will be overwritten.
 
 ## Compatibility
 This is a quite simple plugin and works with Vim as well, but as I only tested it with NeoVim, compatibility is not guaranteed.

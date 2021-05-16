@@ -37,7 +37,8 @@ CHANGELOG			|gitsession-changelog|
 ==============================================================================
 INTRODUCTION					*gitsession-introduction*
 
-*gitsession* is a Vim plugin 
+*gitsession* is a Vim plugin that saves your session state, tagged with the
+status of git repository.
 
 Latest version:
 https://github.com/user/gitsession.vim
@@ -49,15 +50,19 @@ USAGE						*gitsession-usage*
 Go into your project, open NeoVim, edit as you like.  When you are done but
 want to continue tomorrow, run
 
-			`:SaveSession`
+	`:SaveSession`
 
 before you leave. This will save your current session.
-		
+
 When you are back, run
 
-			`:LoadSession`
+	`:LoadSession`
 
-in the same project repository. Your window setting will be reloaded.
+in any place within the project directory. Your window setting will be reloaded.
+
+The session file is tagged with the name of the repository, the name of the
+remote origin, the name of the branch. If any of them changes, the session
+file separated.
 
 CONFIGURATION EXAMPLES:
 
@@ -65,12 +70,13 @@ CONFIGURATION EXAMPLES:
 	" performance.
 	set sessionoptions-=buffers
 
-	" I don't like my temporary file to be scattered.
+	" Change temporary file location.
 	let g:gitsession_tmp_dir = expand("~/.config/nvim/tmp/gitsession")
 
 	" mappings
 	nmap gss :SaveSession<CR>
 	nmap gsl :LoadSession<CR>
+	nmap gsr :StartRepeatedSave<CR>
 	nmap gsc :CleanUpSession<CR>
 
 ==============================================================================
