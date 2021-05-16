@@ -22,7 +22,7 @@ nmap gsl :LoadSession<CR>
 
 ## Autosave
 Type `:StartRepeatedSave` to enable autosave. Your session will be saved automatically.
-(This internally use `CursorHold`, so that it will be saved only when needed.)
+(This internally use `VimLeave`, so that it will be saved only when exiting.)
 
 You can also set `let g:gitsession_autosave = 1` (before this plugin is loaded) to enable this feature at the moment Vim starts.
 

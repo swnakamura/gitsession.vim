@@ -86,6 +86,6 @@ endfunction
 
 function! gitsession#repeatsaving() abort
     augroup GSSaveEveryChange
-        autocmd CursorHold * SaveSession
+        autocmd VimLeave * SaveSession
     augroup END
 endfunction
