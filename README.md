@@ -1,24 +1,32 @@
 gitsession.nvim
 ==============
 
-Say goodbye to troublesome session file management.
+Say goodbye to the trouble of session file management.
 
 ## About
-With this plugin you can save&load session file (the arrangement of tabs&windows) tagged with git repository, its absolute path and its remote repository URL.
+With this plugin you can save & load session file (the arrangement of tabs & windows) tagged with its git repository, its absolute path and its remote repository URL.
 
-## Quick Start
+## Quick start
 Install it with a plugin manager.
 
-Go into your (git) project, open NeoVim, edit as you like, and run `:SaveSession` before you leave. This will save your current session.
+Go into your (git) project, open NeoVim, edit as you like, and type `:SaveSession` before you leave. This will save your current session.
 
-When you are back, run `:LoadSession` in the same project repository. Your window setting will reappear.
+When you are back, type `:LoadSession` in the same project repository. Your window setting will reappear.
 
-## Example Comfiguration
+## Example configuration
 
 ```init.vim
 nmap gss :SaveSession<CR>
 nmap gsl :LoadSession<CR>
 ```
 
+## Autosave
+Type `:StartRepeatedSave` to enable autosave. Your session will be saved automatically.
+(This internally use `CursorHold`, so that it will be saved only when needed.)
+
+You can also set `let g:gitsession_autosave = 1` (before this plugin is loaded) to enable this feature at the moment Vim starts.
+In this case, you will have 5 seconds before the first save starts, for the case you want to restore the last saved session.
+If you want to restore the last session, start typing `:LoadSession` before 5 seconds pass, or it will be overwritten.
+
 ## Compatibility
-This plugin works with Vim as well, but as I only tested it with NeoVim, compatibility is not guaranteed. If you find any problem, please send Issue/PR.
+This is a quite simple plugin and works with Vim as well, but as I only tested it with NeoVim, compatibility is not guaranteed.

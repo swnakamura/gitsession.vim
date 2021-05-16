@@ -12,8 +12,9 @@ command! StartRepeatedSave call gitsession#repeatsaving()
 " variables
 let g:gitsession_git_executable = get(g:, 'gitsession_git_executable', "git")
 let g:gitsession_tmp_dir        = get(g:, 'gitsession_tmp_dir', expand("~/.tmp/gitsession"))
-let g:gitsession_current_window = get(g:, 'gitsession_current_window', 1)
+let g:gitsession_current_window = get(g:, 'gitsession_current_window', v:true)
 let g:gitsession_autoload       = get(g:, 'gitsession_autoload', 0)
+let g:gitsession_autosave       = get(g:, 'gitsession_autosave', 0)
 
 if g:gitsession_autoload == 1
     augroup GSAutoLoad

@@ -1,17 +1,50 @@
-gitsession.txt								Last Change: Wed May  1 22:30:37 JST 2019
+*gitsession.txt*	Say goodbye to the trouble of the session management.
 
-Author: Shu W. Nakamura
-License: MIT license
+Version : 0.2
+Author  : woodyZootopia
+License : MIT license  {{{
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
 
-CONTENTS									*gitsession-contents*
-Usage										|gitsession-usage|
-Install										|gitsession-install|
-Variables									|gitsession-variables|
-Commands									|gitsession-commands|
-Configuration Examples								|gitsession-examples|
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+    CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+}}}
 
 ==============================================================================
-USAGE										*gitsession-usage*
+CONTENTS					*gitsession-contents*
+
+INTRODUCTION			|gitsession-introduction|
+USAGE				|gitsession-usage|
+INTERFACE			|gitsession-interface|
+  VARIABLES			  |gitsession-variables|
+  COMMANDS			  |gitsession-commands|
+TODO				|gitsession-todo|
+CHANGELOG			|gitsession-changelog|
+
+
+==============================================================================
+INTRODUCTION					*gitsession-introduction*
+
+*gitsession* is a Vim plugin 
+
+Latest version:
+https://github.com/user/gitsession.vim
+
+
+==============================================================================
+USAGE						*gitsession-usage*
 
 Go into your project, open NeoVim, edit as you like.  When you are done but
 want to continue tomorrow, run
@@ -26,71 +59,82 @@ When you are back, run
 
 in the same project repository. Your window setting will be reloaded.
 
-==============================================================================
-INSTALL										*gitsession-install*
+CONFIGURATION EXAMPLES:
 
-Can be easily installed with your package manager.
+	" I don't like buffer to be cached. It piles up and degrades
+	" performance.
+	set sessionoptions-=buffers
 
-For example, with vim-plug,
+	" I don't like my temporary file to be scattered.
+	let g:gitsession_tmp_dir = expand("~/.config/nvim/tmp/gitsession")
 
-			`Plug 'woodyZootopia/gitsession.nvim'`
-
-==============================================================================
-VARIABLES									*gitsession-variables*
-
-										*g:gitsession_git_executable*
-g:gitsession_git_executable							
-			Specify your command to run git if you aliased `git`
-			to another command.
-
-			Default value: "git"
-
-										*g:gitsession_tmp_dir*
-g:gitsession_tmp_dir								
-			Specify temporary directory to save session files.
-
-			Default value: "expand("~/.tmp/gitsession")"
-
-										*g:gitsession_current_window*
-g:gitsession_current_window
-			By default, gitsession associates your session file
-			with the directory of your current window.  Set this
-			value to 0 if you want to associate your session file
-			with your working directory.
-
-			Default value: 1
-
-										*g:gitsession_autoload*
-g:gitsession_autoload
-			By default, gitsession load session only when
-			`SaveSession` command is called. Setting this to 1
-			saves always.
-
-			Default value: 0
+	" mappings
+	nmap gss :SaveSession<CR>
+	nmap gsl :LoadSession<CR>
+	nmap gsc :CleanUpSession<CR>
 
 ==============================================================================
-Commands									*gitsession-commands*
+INTERFACE					*gitsession-interface*
 
-*SaveSession*
+------------------------------------------------------------------------------
+VARIABLES					*gitsession-variables*
 
-*LoadSession*
+g:gitsession_git_executable			*g:gitsession_git_executable*
+	default value: "git"
 
-*CleanUpSession*
-			Delete all session data.
+	The name for the executable of git command.
+
+
+g:gitsession_tmp_dir				*g:gitsession_tmp_dir*
+	default value: expand("~/.tmp/gitsession")
+
+	The temporary directory for gitsession files.
+
+
+g:gitsession_current_window			*g:gitsession_current_window*
+	default value: v:true
+
+	If this is true, saving occurs as if you are under the parent
+	directory of the current window file. If this is false, current
+	directory of Vim is used instead.
+
+
+g:gitsession_autoload				*g:gitsession_autoload*
+	default value: 0
+
+	Load session file automatically when startup is finished.
+
+
+g:gitsession_autosave				*g:gitsession_autosave*
+	default value: 0
+
+	Save session file automatically.
+
+------------------------------------------------------------------------------
+COMMANDS					*gitsession-commands*
+
+:SaveSession					*:SaveSession*
+
+
+:LoadSession					*:LoadSession*
+
+
+:CleanUpSession					*:CleanUpSession*
+	Delete all session data.
+
+
+:StartRepeatedSave				*:StartRepeatedSave*
+
 
 ==============================================================================
-CONFIGURATION EXAMPLES						*gitsession-examples*
+TODO						*gitsession-todo*
 
-			" I don't like buffer to be cached. It piles up and degrades
-			" performance.
-			set sessionoptions-=buffers
+Ask whether or not to load the previous session.
 
-			" I don't like my temporary file to be scattered.
-			let g:gitsession_tmp_dir = expand("~/.config/nvim/tmp/gitsession")
 
-			" mappings
-			nmap gss :SaveSession<CR>
-			nmap gsl :LoadSession<CR>
-			nmap gsc :CleanUpSession<CR>
+==============================================================================
+CHANGELOG					*gitsession-changelog*
 
- vim:tw=78:ts=8:noet:ft=help:norl:
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:
