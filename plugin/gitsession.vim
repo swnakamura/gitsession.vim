@@ -29,7 +29,8 @@ if g:gitsession_autosave == 1
     " If the previous session file is found, load immediately before
     " overwritten by autosaving
     if gitsession#exists_session()
-        if input("The previous session file is found. Load this? Y/n: ") != 'n'
+        echo 'The previous session file is found. Load this before starting autosave? Y/n: '
+        if nr2char(getchar()) != 'n'
             call gitsession#loadsession()
         endif
     endif
