@@ -18,12 +18,14 @@ let g:gitsession_autosave       = get(g:, 'gitsession_autosave', 0)
 
 if g:gitsession_autoload == 1
     augroup GSAutoLoad
+        autocmd!
         autocmd VimEnter * call gitsession#loadsession()
     augroup END
 endif
 
 if g:gitsession_autosave == 1
     augroup GSAutoSave
+        autocmd!
         autocmd VimEnter * call gitsession#repeatsaving()
     augroup END
     " If the previous session file is found, prompt to load immediately before
