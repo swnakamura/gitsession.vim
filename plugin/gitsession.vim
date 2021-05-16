@@ -26,7 +26,7 @@ if g:gitsession_autosave == 1
     augroup GSAutoSave
         autocmd VimEnter * call gitsession#repeatsaving()
     augroup END
-    " If the previous session file is found, load immediately before
+    " If the previous session file is found, prompt to load immediately before
     " overwritten by autosaving
     if gitsession#exists_session()
         echo 'The previous session file is found. Load this before starting autosave? Y/n: '
