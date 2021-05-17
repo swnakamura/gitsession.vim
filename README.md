@@ -13,7 +13,7 @@ When you are back, run `:LoadSession` in any place within the project directory.
 The session file is tagged with the name of the repository, the name of the remote repository and the name of the branch. If any of them changes, the session file gets separated.  
 
 ### Autosave
-Type `:StartRepeatedSave` to enable autosave. Your session will be saved automatically. (This internally use `BufEnter`, so that it will be saved only needed.)  
+Type `:StartRepeatedSave` to enable autosave. Your session will be saved automatically.  
 You can also set `let g:gitsession_autosave = 1` (before this plugin is loaded) to enable this feature at the moment Vim starts.  
 
 ### CONFIGURATION EXAMPLES
