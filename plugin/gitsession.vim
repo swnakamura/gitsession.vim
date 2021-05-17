@@ -31,9 +31,21 @@ if g:gitsession_autosave == 1
     " If the previous session file is found, prompt to load immediately before
     " overwritten by autosaving
     if gitsession#exists_session()
-        echo 'The previous session file is found. Load this before starting autosave? Y/n: '
-        if nr2char(getchar()) != 'n'
-            call gitsession#loadsession()
-        endif
+        echomsg 'A previous session file is found. Load this before starting autosave? Y/n: '
+        let s:got_correct_answer = v:false
+        while s:got_correct_answer == v:false
+            let s:choice = nr2char(getchar())
+            if s:choice == 'n'
+                let s:got_correct_answer = v:true
+            elseif index(['Y', 'y', '\n'], s:choice) >= 1
+                call gitsession#loadsession()
+                let s:got_correct_answer = v:true
+            endif
+            if s:got_correct_answer == v:false
+                echohl WarningMsg
+                echo 'please answer y/n: '
+                echohl None
+            endif
+        endwhile
     endif
 endif
