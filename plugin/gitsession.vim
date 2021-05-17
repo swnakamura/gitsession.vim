@@ -37,7 +37,7 @@ if g:gitsession_autosave == 1
             let s:choice = nr2char(getchar())
             if s:choice == 'n'
                 let s:got_correct_answer = v:true
-            elseif index(['Y', 'y', '\n'], s:choice) >= 1
+            elseif index(['Y', 'y', "\r"], s:choice) >= 1
                 call gitsession#loadsession()
                 let s:got_correct_answer = v:true
             endif
