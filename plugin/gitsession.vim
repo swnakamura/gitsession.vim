@@ -30,7 +30,7 @@ if g:gitsession_autosave == 1
     augroup END
     " If the previous session file is found, prompt to load immediately before
     " overwritten by autosaving
-    if gitsession#exists_session()
+    if gitsession#exists_session() && bufname(1) == ''
         echomsg 'A previous session file is found. Load this before starting autosave? Y/n: '
         let s:got_correct_answer = v:false
         while s:got_correct_answer == v:false
