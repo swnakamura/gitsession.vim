@@ -53,10 +53,14 @@ function! gitsession#exists_session() abort
 endfunction
 
 function! gitsession#savesession() abort
+    if g:gitsession_current_window && (expand('%:p:h')[0] != '/')
+        " can't save because the path of of the current window is not valid
+        return
+    endif
     if g:gitsession_current_window
         cd %:p:h
     endif
-    if isdirectory(g:gitsession_tmp_dir) == 0
+    if !isdirectory(g:gitsession_tmp_dir)
         call system("mkdir -p " . g:gitsession_tmp_dir . " >/dev/null 2>&1")
     endif
     let s:session_filename = Session_filename()
