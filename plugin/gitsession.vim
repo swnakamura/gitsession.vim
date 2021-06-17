@@ -32,20 +32,20 @@ if g:gitsession_autosave == 1
     " overwritten by autosaving
     if gitsession#exists_session() && bufname(1) == ''
         echomsg 'A previous session file is found. Load this before starting autosave? Y/n/q: '
-        let s:got_correct_answer = v:false
-        while s:got_correct_answer == v:false
+        let s:got_correct_resonse = v:false
+        while s:got_correct_resonse == v:false
             let s:choice = nr2char(getchar())
-            if s:choice == 'n'
-                let s:got_correct_answer = v:true
+            if index(['Y', 'y', "\r"], s:choice) >= 1
+                call gitsession#loadsession()
+                let s:got_correct_response = v:true
+            elseif s:choice == 'n'
+                let s:got_correct_resonse = v:true
             elseif s:choice == 'q'
                 quit
-            elseif index(['Y', 'y', "\r"], s:choice) >= 1
-                call gitsession#loadsession()
-                let s:got_correct_answer = v:true
             endif
-            if s:got_correct_answer == v:false
+            if s:got_correct_response == v:false
                 echohl WarningMsg
-                echo 'please answer y/n: '
+                echo 'please answer Y/n/q: '
                 echohl None
             endif
         endwhile
