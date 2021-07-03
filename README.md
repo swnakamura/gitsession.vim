@@ -10,7 +10,7 @@ Go into your (git) project, open NeoVim, edit as you like. When you are done but
 
 When you are back, run `:LoadSession` in any place within the project directory. Your window setting will be reloaded.  
 
-The session file is tagged with the name of the repository, the name of the remote repository and the name of the branch. If any of them changes, the session file gets separated.  
+The session file is tagged with the name of the repository, the name of the remote repository and the name of the branch. If any of them changes, the session file will be a different one.  
 
 ### Autosave
 Type `:StartRepeatedSave` to enable autosave. Your session will be saved automatically.  
@@ -34,4 +34,6 @@ nmap gsc :CleanUpSession
 ```
 
 ## Compatibility
-This is a quite simple plugin and works with Vim as well, but as I only tested it with NeoVim, compatibility is not guaranteed.
+This is a quite simple plugin and should work with Vim as well, but compatibility is not guaranteed as I only use NeoVim.  
+
+If you find any problem/feature requests, issues/PRs are welcomed!
