@@ -38,7 +38,7 @@ CHANGELOG			|gitsession-changelog|
 INTRODUCTION					*gitsession-introduction*
 
 *gitsession* is a Vim plugin that saves your session state, tagged with the
-status of git repository.
+status of git repositories.
 
 Latest version:
 https://github.com/woodyZootopia/gitsession.vim
@@ -64,13 +64,13 @@ The session file is tagged with the name of the repository, the name of the
 remote repository and the name of the branch. If any of them changes, the
 session file gets separated.
 
-Type `:StartRepeatedSave` to enable autosave. Your session will be saved automatically.
+Type `:StartRepeatedSave` to enable autosaving. Your session will be saved automatically.
 
 You can also set `let g:gitsession_autosave = 1` (before this plugin is loaded) to enable this feature at the moment Vim starts.
 
 CONFIGURATION EXAMPLES:
 
-	" I don't like buffer to be cached. It piles up and degrades
+	" I don't like buffers to be cached. They pile up and degrade
 	" performance.
 	set sessionoptions-=buffers
 
@@ -134,12 +134,6 @@ COMMANDS					*gitsession-commands*
 
 
 :StartRepeatedSave				*:StartRepeatedSave*
-
-
-==============================================================================
-TODO						*gitsession-todo*
-
-Ask whether or not to load the previous session.
 
 
 ==============================================================================
