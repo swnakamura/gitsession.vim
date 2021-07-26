@@ -34,17 +34,17 @@ if g:gitsession_autosave == 1
         echomsg 'A previous session file is found. Load this before starting autosave? Y(es)/n(o)/q(uit)/e(dit current directory): '
         let s:got_correct_response = v:false
         while s:got_correct_response == v:false
+            let s:got_correct_response = v:true
             let s:choice = nr2char(getchar())
             if index(['Y', 'y', "\r"], s:choice) >= 1
                 call gitsession#loadsession()
-                let s:got_correct_response = v:true
             elseif s:choice == 'n'
-                let s:got_correct_response = v:true
             elseif s:choice == 'e'
                 exe 'e .'
-                let s:got_correct_response = v:true
             elseif s:choice == 'q'
                 quit
+            else
+                let s:got_correct_response = v:false
             endif
             if s:got_correct_response == v:false
                 echohl WarningMsg
