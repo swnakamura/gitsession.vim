@@ -74,7 +74,7 @@ CONFIGURATION EXAMPLES:
 	" performance.
 	set sessionoptions-=buffers
 
-	" Change temporary file location.
+	" Change the temporary file location.
 	let g:gitsession_tmp_dir = expand("~/.config/nvim/tmp/gitsession")
 
 	" mappings
