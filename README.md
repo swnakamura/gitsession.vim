@@ -18,8 +18,7 @@ You can also set `let g:gitsession_autosave = 1` (before this plugin is loaded) 
 
 ### CONFIGURATION EXAMPLES
 
-```
-init.vim
+```init.vim
 " I don't like buffer to be cached. They pile up and degrade performance.  
 set sessionoptions-=buffers  
 
