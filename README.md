@@ -26,10 +26,10 @@ set sessionoptions-=buffers
 let g:gitsession_tmp_dir = expand("~/.config/nvim/tmp/gitsession")  
 
 " mappings  
-nmap gss :SaveSession  
-nmap gsl :LoadSession  
-nmap gsr :StartRepeatedSave  
-nmap gsc :CleanUpSession  
+nmap gss <Cmd>SaveSession<CR>  
+nmap gsl <Cmd>LoadSession<CR>  
+nmap gsr <Cmd>StartRepeatedSave<CR>  
+nmap gsc <Cmd>CleanUpSession<CR>  
 ```
 
 ## Compatibility
