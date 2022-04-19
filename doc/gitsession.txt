@@ -118,7 +118,7 @@ g:gitsession_ask_autoload			*g:gitsession_ask_autoload*
 	default value: 0
 
 	Ask whether to load the session file when starting vim with no
-	argument. It has no effect when *g:gitsession_autoload* is v:true.
+	argument. It has no effect when |g:gitsession_autoload| is v:true.
 
 
 g:gitsession_autosave				*g:gitsession_autosave*
