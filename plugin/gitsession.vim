@@ -40,7 +40,7 @@ if g:gitsession_autosave == 1
         while s:got_correct_response == v:false
             let s:got_correct_response = v:true
             let s:choice = nr2char(getchar())
-            if index(['Y', 'y', "\r"], s:choice) >= 1
+            if index(['Y', 'y', "\r", "<C-j>"], s:choice) >= 1
                 call gitsession#loadsession()
             elseif s:choice == 'n'
             elseif s:choice == 'e'

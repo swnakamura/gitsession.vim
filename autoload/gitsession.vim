@@ -61,7 +61,7 @@ function! gitsession#savesession() abort
         cd %:p:h
     endif
     if !isdirectory(g:gitsession_tmp_dir)
-        call system("mkdir -p " . g:gitsession_tmp_dir . " >/dev/null 2>&1")
+        call mkdir(g:gitsession_tmp_dir, "p")
     endif
     let s:session_filename = Session_filename()
     if g:gitsession_current_window
