@@ -12,8 +12,8 @@ function! GetOrigin() abort
     " remove remote branch name
     let s:orig_name = substitute(s:orig_name, '.*\t',           '',  '')
     " remove https/git header/suffix
-    let s:orig_name = substitute(s:orig_name, 'https://[^/]*/', '',  '')
-    let s:orig_name = substitute(s:orig_name, 'git@.*:',        '',  '')
+    let s:orig_name = substitute(s:orig_name, 'https://', '',  '')
+    let s:orig_name = substitute(s:orig_name, 'ssh://', '',  '')
     let s:orig_name = substitute(s:orig_name, '\.git',          '',  '')
     " remove trailing "(push)"
     let s:orig_name = substitute(s:orig_name, ' (.*)',          '',  '')
