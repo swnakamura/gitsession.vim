@@ -54,7 +54,11 @@ endfunction
 
 function! gitsession#savesession() abort
     if g:gitsession_current_window && (expand('%:p:h')[0] != '/')
-        " can't save because the path of of the current window is not valid
+        " can't save because the path of the current window is not valid
+        return
+    endif
+    if win_gettype() != ''
+        " need to save only in normal windows
         return
     endif
     if g:gitsession_current_window
