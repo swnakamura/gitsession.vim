@@ -19,11 +19,8 @@ You can also set `let g:gitsession_autosave = 1` (before this plugin is loaded) 
 ### CONFIGURATION EXAMPLES
 
 ```init.vim
-" I don't like buffer to be cached. They pile up and degrade performance.  
-set sessionoptions-=buffers  
-
 " Change the temporary file location.  
-let g:gitsession_tmp_dir = expand("~/.config/nvim/tmp/gitsession")  
+let g:gitsession_tmp_dir = $HOME . "/.config/nvim/tmp/gitsession"  
 
 " mappings  
 nmap gss <Cmd>SaveSession<CR>  
@@ -35,4 +32,4 @@ nmap gsc <Cmd>CleanUpSession<CR>
 ## Compatibility
 This is a quite simple plugin and should work with Vim as well, but compatibility is not guaranteed as I only use NeoVim.  
 
-If you find any problem/feature requests, issues/PRs are welcomed!
+If you find any problem/feature requests, issues/PRs are welcomed.
