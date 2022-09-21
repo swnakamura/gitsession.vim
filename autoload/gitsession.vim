@@ -53,6 +53,9 @@ function! gitsession#exists_session() abort
 endfunction
 
 function! gitsession#savesession() abort
+    if exists('g:gitsession_loading_session')
+        return
+    endif
     if g:gitsession_current_window && (expand('%:p:h')[0] != '/')
         " can't save because the path of the current window is not valid
         return
@@ -75,6 +78,7 @@ function! gitsession#savesession() abort
 endfunction
 
 function! gitsession#loadsession() abort
+    let g:gitsession_loading_session=v:true
     if g:gitsession_current_window
         cd %:p:h
     endif
@@ -86,15 +90,18 @@ function! gitsession#loadsession() abort
     if g:gitsession_current_window
         cd -
     endif
+    unlet g:gitsession_loading_session
 endfunction
 
 function! gitsession#cleanupsession() abort
     call system("rm " . g:gitsession_tmp_dir . "/*--*--*--sess.vim")
 endfunction
 
+function! gitsession#cleanupbuffers() abort
+endfunction
+
 function! gitsession#repeatsaving() abort
     augroup GSSaveEveryChange
-        autocmd!
-        autocmd WinEnter,BufEnter * SaveSession
+        autocmd WinEnter,BufEnter * call gitsession#savesession()
     augroup END
 endfunction
