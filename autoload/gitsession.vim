@@ -102,6 +102,7 @@ endfunction
 
 function! gitsession#repeatsaving() abort
     augroup GSSaveEveryChange
-        autocmd WinEnter,BufEnter * call gitsession#savesession()
+        autocmd!
+        autocmd WinEnter,BufEnter,VimLeavePre * call gitsession#savesession()
     augroup END
 endfunction
