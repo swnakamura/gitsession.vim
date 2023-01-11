@@ -1,26 +1,26 @@
 function! GetBranch() abort
     let s:branch_name = system(g:gitsession_git_executable . " branch 2>/dev/null| grep '*' | sed 's/* //'")
-    let s:branch_name = substitute(s:branch_name,' ','_','g')
-    let s:branch_name = substitute(s:branch_name, '\n', '', 'g')
+    let s:branch_name = substitute(s:branch_name, ' ',  '_', 'g')
+    let s:branch_name = substitute(s:branch_name, '\n', '',  'g')
     " convert '/' to '_' to avoid problems with path
-    let s:branch_name = substitute(s:branch_name, '/', '_', 'g')
+    let s:branch_name = substitute(s:branch_name, '/',  '_', 'g')
     return s:branch_name
 endfunction
 
 function! GetOrigin() abort
     let s:orig_name = system(g:gitsession_git_executable . " remote -v 2>/dev/null | grep 'push' | grep 'origin'")
     " remove remote branch name
-    let s:orig_name = substitute(s:orig_name, '.*\t',           '',  '')
+    let s:orig_name = substitute(s:orig_name, '.*\t',     '',  '')
     " remove https/git header/suffix
     let s:orig_name = substitute(s:orig_name, 'https://', '',  '')
-    let s:orig_name = substitute(s:orig_name, 'ssh://', '',  '')
-    let s:orig_name = substitute(s:orig_name, '\.git',          '',  '')
+    let s:orig_name = substitute(s:orig_name, 'ssh://',   '',  '')
+    let s:orig_name = substitute(s:orig_name, '\.git',    '',  '')
     " remove trailing "(push)"
-    let s:orig_name = substitute(s:orig_name, ' (.*)',          '',  '')
-    let s:orig_name = substitute(s:orig_name, '\n',             '',  'g')
+    let s:orig_name = substitute(s:orig_name, ' (.*)',    '',  '')
+    let s:orig_name = substitute(s:orig_name, '\n',       '',  'g')
     " convert path separator to '_' in order to avoid problems
-    let s:orig_name = substitute(s:orig_name, '/',              '_', 'g')
-    let s:orig_name = substitute(s:orig_name, '\',              '_', 'g')
+    let s:orig_name = substitute(s:orig_name, '/',        '_', 'g')
+    let s:orig_name = substitute(s:orig_name, '\',        '_', 'g')
     return s:orig_name
 endfunction
 
